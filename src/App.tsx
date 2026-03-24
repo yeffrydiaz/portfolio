@@ -187,15 +187,28 @@ function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
-            className="relative w-64 h-64 md:w-96 md:h-96 shrink-0"
+            className="relative w-64 h-64 md:w-96 md:h-96 shrink-0 group"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-zinc-800 to-zinc-600 blur-3xl opacity-20"></div>
-            <img 
-              src={PROFILE_IMAGE_URL} 
-              alt="Yeffry" 
-              referrerPolicy="no-referrer"
-              className="relative w-full h-full object-cover rounded-full border border-white/10 shadow-2xl"
-            />
+            {/* Ambient background glow */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-zinc-600 to-zinc-400 blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+            
+            {/* Image container with premium border and vignette */}
+            <div className="relative w-full h-full rounded-full p-2 bg-gradient-to-tr from-zinc-800/50 to-zinc-400/20 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden">
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-zinc-900">
+                <img 
+                  src={PROFILE_IMAGE_URL} 
+                  alt="Yeffry" 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
+                />
+                
+                {/* Vignette overlay (darkens edges) */}
+                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none"></div>
+                
+                {/* Subtle lighting overlay (adds a premium sheen) */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none mix-blend-overlay"></div>
+              </div>
+            </div>
           </motion.div>
         </section>
 
