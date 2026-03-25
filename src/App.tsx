@@ -22,7 +22,7 @@ const projects = [
     challenge: "Handling large datasets in real-time without freezing the UI. Overcame this by heavily optimizing the frontend using React.memo, custom hooks, and web workers for data processing.",
     tags: ["React", "Tailwind", "Vite", "Recharts"],
     link: "https://github.com/yeffrydiaz/ecommerce-dashboard",
-    liveDemo: "https://ecommerce-dashboard-demo.vercel.app"
+    liveDemo: "https://ecommerce-dashboard-theta-jade.vercel.app"
   },
   {
     title: "Task Management SaaS",
@@ -31,7 +31,7 @@ const projects = [
     challenge: "Ensuring seamless real-time synchronization across multiple clients with optimistic UI updates. Solved using Firebase's real-time database and custom conflict resolution logic.",
     tags: ["Next.js", "TypeScript", "Firebase", "Framer Motion"],
     link: "https://github.com/yeffrydiaz/task-saas",
-    liveDemo: "https://task-saas-demo.vercel.app"
+    liveDemo: "https://task-saas-psi.vercel.app"
   },
   {
     title: "AI Content Generator",
