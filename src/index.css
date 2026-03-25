@@ -6,9 +6,26 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+.light {
+  --color-zinc-950: oklch(98.5% 0 0); /* zinc-50 */
+  --color-zinc-900: oklch(96.7% 0.001 286.375); /* zinc-100 */
+  --color-zinc-800: oklch(92% 0.004 286.32); /* zinc-200 */
+  --color-zinc-500: oklch(55.2% 0.016 285.938); /* zinc-500 */
+  --color-zinc-400: oklch(44.2% 0.017 285.786); /* zinc-600 */
+  --color-zinc-300: oklch(36.9% 0.014 285.805); /* zinc-700 */
+  --color-zinc-200: oklch(27.4% 0.006 286.033); /* zinc-800 */
+  --color-zinc-100: oklch(21% 0.006 285.885); /* zinc-900 */
+  --color-zinc-700: oklch(70.5% 0.015 286.067); /* zinc-400 */
+  --color-zinc-600: oklch(87.1% 0.006 286.286); /* zinc-300 */
+  --color-white: oklch(14.1% 0.005 285.823); /* zinc-950 */
+  --color-black: #fff;
+  --color-emerald-400: #059669; /* emerald-600 */
+  --color-emerald-300: #047857; /* emerald-700 */
+}
+
 body {
-  background-color: #09090b;
-  color: #fafafa;
+  background-color: var(--color-zinc-950, #09090b);
+  color: var(--color-white, #fafafa);
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -18,12 +35,12 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: var(--color-zinc-950, #09090b);
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: var(--color-zinc-800, #27272a);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: var(--color-zinc-700, #3f3f46);
 }
