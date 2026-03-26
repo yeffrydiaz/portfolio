@@ -50,7 +50,7 @@ const projects = [
     challenge: "Managing API rate limits and ensuring consistent tone in AI responses. Overcame this by implementing a robust Redis-backed queuing system and fine-tuning the Gemini API prompts with context-aware parameters and few-shot learning techniques.",
     tags: ["React", "Node.js", "Gemini API"],
     link: "https://github.com/yeffrydiaz/ai-content-gen",
-    liveDemo: "https://ai-content-gen-git-copilot-configure-ou-397e08-yeffrys-projects.vercel.app/"
+    liveDemo: "https://ai-content-gen-git-copilot-configure-ou-5a107c-yeffrys-projects.vercel.app/"
   },
   {
     title: "Real-time Chat Application",
@@ -138,7 +138,8 @@ export default function App() {
   }, [isDark]);
 
   return (
-    <div className="min-h-screen selection:bg-zinc-800 selection:text-white relative">
+    <>
+      <div className="min-h-screen selection:bg-zinc-800 selection:text-white relative">
       <ScrollToTop />
       {/* Modern Background */}
       <div className="fixed inset-0 z-[-1] bg-zinc-950">
@@ -181,6 +182,7 @@ export default function App() {
         <p>© {new Date().getFullYear()} Yeffry. Built with React & Tailwind.</p>
       </footer>
     </div>
+    </>
   );
 }
 
@@ -334,7 +336,7 @@ function ProjectsPage() {
   );
 }
 
-function ProjectCard({ project, index }: { project: any, index: number }) {
+function ProjectCard({ project, index }: { key?: string; project: { title: string; description: string; impact: string; challenge: string; tags: string[]; link: string; liveDemo?: string; }; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -343,24 +345,24 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
-      className="group flex flex-col justify-between h-full p-6 sm:p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 hover:shadow-2xl hover:shadow-white/[0.02] hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+      className="group flex flex-col justify-between h-full p-6 sm:p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_8px_30px_rgba(255,255,255,0.04)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
     >
       {/* Subtle background gradient that appears on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 border border-white/5">
-            <Code2 className="w-6 h-6 text-zinc-400 group-hover:text-white transition-colors duration-300" />
+          <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/15 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-500 border border-white/5 group-hover:border-white/20">
+            <Code2 className="w-6 h-6 text-zinc-400 group-hover:text-white transition-colors duration-500" />
           </div>
           <div className="flex gap-2">
             {project.liveDemo && (
-              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-white/15 hover:scale-110" title="Live Demo">
-                <Globe className="w-4 h-4 text-zinc-300 hover:text-white transition-colors" />
+              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/10 sm:bg-white/5 opacity-100 translate-y-0 sm:opacity-0 sm:-translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hover:bg-white/20 hover:scale-110 hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]" title="Live Demo">
+                <Globe className="w-4 h-4 text-zinc-200 sm:text-zinc-300 hover:text-white transition-colors" />
               </a>
             )}
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75 hover:bg-white/15 hover:scale-110" title="Source Code">
-              <ExternalLink className="w-4 h-4 text-zinc-300 hover:text-white transition-colors" />
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/10 sm:bg-white/5 opacity-100 translate-y-0 sm:opacity-0 sm:-translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 sm:delay-75 hover:bg-white/20 hover:scale-110 hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]" title="Source Code">
+              <ExternalLink className="w-4 h-4 text-zinc-200 sm:text-zinc-300 hover:text-white transition-colors" />
             </a>
           </div>
         </div>
