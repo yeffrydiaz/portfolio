@@ -26,6 +26,14 @@ const skills = [
 
 const projects = [
   {
+    title: "XPERDRIVER",
+    description: "A private transportation application tailored for deliveries and Non-Emergency Medical Transportation (NEMT) businesses, hosted on AWS.",
+    impact: "Streamlined dispatch operations and improved driver routing efficiency for private transportation fleets, ensuring reliable and timely medical and delivery transports.",
+    challenge: "Building a reliable real-time tracking and dispatch system. Solved by leveraging scalable AWS infrastructure alongside the MERN stack for high availability and low latency.",
+    tags: ["MongoDB", "Express", "React", "Node.js", "AWS", "Bootstrap"],
+    liveDemo: "https://xperdriver.com"
+  },
+  {
     title: "E-Commerce Dashboard",
     description: "A high-performance full-stack admin dashboard built with React, Tailwind, and Recharts, designed for visualizing complex sales data, managing dynamic inventory, and tracking user engagement.",
     impact: "Increased client sales tracking efficiency by 40% and reduced inventory discrepancies by 15% across 3 active storefronts.",
@@ -123,6 +131,38 @@ const projects = [
     tags: ["MongoDB", "Express", "React", "Node.js", "Bootstrap"],
     link: "https://github.com/yeffrydiaz/alumni-network",
     liveDemo: "https://alumni-network-rf23l3q0a-yeffrys-projects.vercel.app"
+  },
+  {
+    title: "AGUA AZUL POOL",
+    description: "A professional pool company website featuring detailed services, pricing, maintenance tips, and an interactive image gallery.",
+    impact: "Established a strong online presence for the business, streamlining customer inquiries and providing a centralized hub for pool care information.",
+    challenge: "Building a responsive, visually appealing gallery and service layout without modern frontend frameworks. Solved by utilizing semantic HTML, custom CSS grid/flexbox layouts, and vanilla JavaScript for interactivity, hosted reliably on HostGator.",
+    tags: ["HTML", "CSS", "JavaScript", "HostGator"],
+    liveDemo: "https://aguaazulpool.us/"
+  },
+  {
+    title: "ALL FLORIDA POOL BUILDERS",
+    description: "A professional pool construction company website featuring detailed services, pricing, pool tips, and an interactive image gallery.",
+    impact: "Enhanced the company's digital footprint, improving lead generation and providing clients with comprehensive information on pool construction services.",
+    challenge: "Creating an engaging and responsive user interface without relying on heavy frontend frameworks. Solved by implementing semantic HTML, custom CSS styling, and vanilla JavaScript, deployed on HostGator.",
+    tags: ["HTML", "CSS", "JavaScript", "HostGator"],
+    liveDemo: "https://allfloridapoolbuilders.com/"
+  },
+  {
+    title: "HOME DRIP SOLUTION",
+    description: "A modern web application built using Google AI Studio and hosted on Vercel.",
+    impact: "Leveraged AI-driven development to rapidly prototype and deploy a functional web solution.",
+    challenge: "Streamlining the development process using AI tools. Solved by utilizing Google AI Studio for code generation and Vercel for seamless, continuous deployment.",
+    tags: ["Google AI Studio", "Vercel", "React", "Tailwind CSS"],
+    liveDemo: "https://homedripsolution.com/"
+  },
+  {
+    title: "WEBNOW",
+    description: "A comprehensive service application offering multiple tools for businesses and individuals, built with React and Firebase.",
+    impact: "Provided a centralized platform for various utility tools, improving user productivity and simplifying access to essential services.",
+    challenge: "Integrating multiple distinct tools into a cohesive user experience. Solved by designing a modular architecture in React and utilizing Firebase for seamless authentication and real-time data synchronization across all tools.",
+    tags: ["React", "Firebase", "Firebase Functions", "Tailwind CSS"],
+    liveDemo: "https://webnow.company"
   }
 ];
 
@@ -283,9 +323,6 @@ function Home() {
               <h2 className="text-3xl font-bold tracking-tight mb-4">Featured Work</h2>
               <p className="text-zinc-400">Some of my recent projects and experiments.</p>
             </div>
-            <Link to="/projects" className="flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors">
-              View all projects <ChevronRight className="w-4 h-4" />
-            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
@@ -293,6 +330,17 @@ function Home() {
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 flex justify-center"
+          >
+            <Link to="/projects" className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300">
+              View all projects <ChevronRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </section>
 
         {/* Contact Section */}
@@ -336,7 +384,7 @@ function ProjectsPage() {
   );
 }
 
-function ProjectCard({ project, index }: { key?: string; project: { title: string; description: string; impact: string; challenge: string; tags: string[]; link: string; liveDemo?: string; }; index: number }) {
+function ProjectCard({ project, index }: { key?: string; project: { title: string; description: string; impact: string; challenge: string; tags: string[]; link?: string; liveDemo?: string; }; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -361,9 +409,11 @@ function ProjectCard({ project, index }: { key?: string; project: { title: strin
                 <Globe className="w-4 h-4 text-zinc-200 sm:text-zinc-300 hover:text-white transition-colors" />
               </a>
             )}
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/10 sm:bg-white/5 opacity-100 translate-y-0 sm:opacity-0 sm:-translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 sm:delay-75 hover:bg-white/20 hover:scale-110 hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]" title="Source Code">
-              <ExternalLink className="w-4 h-4 text-zinc-200 sm:text-zinc-300 hover:text-white transition-colors" />
-            </a>
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/10 sm:bg-white/5 opacity-100 translate-y-0 sm:opacity-0 sm:-translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 sm:delay-75 hover:bg-white/20 hover:scale-110 hover:shadow-[0_0_10px_rgba(255,255,255,0.1)]" title="Source Code">
+                <ExternalLink className="w-4 h-4 text-zinc-200 sm:text-zinc-300 hover:text-white transition-colors" />
+              </a>
+            )}
           </div>
         </div>
         
