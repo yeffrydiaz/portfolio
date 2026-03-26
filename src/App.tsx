@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon } from 'lucide-react';
+import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon, MapPin, Github, Twitter, Send, Search } from 'lucide-react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 
 function ScrollToTop() {
@@ -85,7 +85,7 @@ const projects = [
     challenge: "Building a highly customizable Markdown editor that supports live preview and seamless image uploads. Solved by creating a decoupled architecture with React, AWS S3 for media storage, and Next.js for Static Site Generation (SSG) with incremental static regeneration (ISR).",
     tags: ["React", "Express", "AWS S3", "Markdown"],
     link: "https://github.com/yeffrydiaz/headless-cms",
-    liveDemo: null
+    liveDemo: "https://headless-cms-eight.vercel.app/"
   },
   {
     title: "Crypto Portfolio Tracker",
@@ -198,9 +198,9 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-6 text-sm font-medium text-zinc-400"
           >
-            <a href="/#about" className="hover:text-white transition-colors">About</a>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
-            <a href="/#contact" className="hover:text-white transition-colors">Contact</a>
+            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
             <button 
               onClick={() => setIsDark(!isDark)}
               className="p-2 rounded-full hover:bg-white/5 transition-colors text-zinc-400 hover:text-white"
@@ -215,6 +215,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
       {/* Footer */}
@@ -253,9 +254,9 @@ function Home() {
             </div>
 
             <div className="flex items-center gap-4">
-              <a href="#contact" className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
+              <Link to="/contact" className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors">
                 Get in touch
-              </a>
+              </Link>
               <div className="flex items-center gap-4 px-6">
                 <a href="https://www.linkedin.com/in/yeffrydiaz/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors"><Linkedin className="w-6 h-6" /></a>
               </div>
@@ -331,41 +332,129 @@ function Home() {
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 flex justify-center"
-          >
+          <div className="mt-12 flex justify-center">
             <Link to="/projects" className="inline-flex items-center gap-2 h-12 px-8 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 hover:scale-105 transition-all duration-300">
               View all projects <ChevronRight className="w-4 h-4" />
             </Link>
-          </motion.div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="py-32 border-t border-white/5 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto space-y-8"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Let's build something together.</h2>
-            <p className="text-lg text-zinc-400">
-              I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            <a href="mailto:yeffrydiaz@gmail.com" className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors text-lg">
-              <Mail className="w-5 h-5" />
-              Say Hello
-            </a>
-          </motion.div>
+          </div>
         </section>
       </main>
   );
 }
 
+function ContactPage() {
+  return (
+    <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 min-h-screen">
+      <div className="mb-12">
+        <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors mb-8">
+          <ArrowLeft className="w-4 h-4" /> Back to Home
+        </Link>
+      </div>
+      
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/[0.02] pointer-events-none" />
+        
+        <div className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-16 text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Let's build something together.</h1>
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
+              I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+            {/* Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-12"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <a href="mailto:yeffrydiaz@gmail.com" className="flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group">
+                    <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-zinc-500">Email</p>
+                      <p className="text-lg">yeffrydiaz@gmail.com</p>
+                    </div>
+                  </a>
+                  
+                  <div className="flex items-center gap-4 text-zinc-400">
+                    <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-zinc-500">Location</p>
+                      <p className="text-lg">Miami, FL</p>
+                      <p className="text-sm text-zinc-400">Available Worldwide</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-6">Socials</h3>
+                <div className="flex gap-4">
+                  <a href="https://github.com/yeffrydiaz" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/yeffrydiaz/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="https://twitter.com/yeffrydiaz" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
+                    <Twitter className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Action */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex flex-col items-center justify-center h-full bg-white/5 border border-white/10 rounded-3xl p-12 backdrop-blur-sm text-center"
+            >
+              <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-8">
+                <Mail className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">Ready to start?</h3>
+              <p className="text-zinc-400 mb-8 max-w-sm">
+                Drop me an email and let's discuss your next project or opportunity.
+              </p>
+              <a 
+                href="mailto:yeffrydiaz@gmail.com"
+                className="inline-flex items-center gap-2 h-14 px-8 rounded-full bg-white text-black font-medium hover:bg-zinc-200 hover:scale-105 transition-all duration-300 text-lg"
+              >
+                <Send className="w-5 h-5" />
+                Send an Email
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function ProjectsPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredProjects = projects.filter(project => {
+    const query = searchQuery.toLowerCase();
+    return (
+      project.title.toLowerCase().includes(query) ||
+      project.description.toLowerCase().includes(query) ||
+      project.tags.some(tag => tag.toLowerCase().includes(query))
+    );
+  });
+
   return (
     <main className="max-w-6xl mx-auto px-6 pt-32 pb-24 min-h-screen">
       <div className="mb-12">
@@ -373,13 +462,47 @@ function ProjectsPage() {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Link>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">All Projects</h1>
-        <p className="text-lg text-zinc-400">A complete list of my work, experiments, and contributions.</p>
+        <p className="text-lg text-zinc-400 mb-8">A complete list of my work, experiments, and contributions.</p>
+        
+        <div className="relative max-w-xl">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-zinc-500" />
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all"
+            placeholder="Search projects by title, description, or tags..."
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.title} project={project} index={index} />
-        ))}
-      </div>
+      
+      {filteredProjects.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
+          ))}
+        </div>
+      ) : (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center py-20 border border-white/5 rounded-3xl bg-white/[0.02]"
+        >
+          <Search className="w-12 h-12 text-zinc-700 mx-auto mb-4" />
+          <h3 className="text-xl font-medium text-zinc-300 mb-2">No projects found</h3>
+          <p className="text-zinc-500">
+            We couldn't find any projects matching "{searchQuery}".
+          </p>
+          <button 
+            onClick={() => setSearchQuery('')}
+            className="mt-6 text-sm font-medium text-white hover:text-zinc-300 underline underline-offset-4"
+          >
+            Clear search
+          </button>
+        </motion.div>
+      )}
     </main>
   );
 }
