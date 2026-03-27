@@ -31,7 +31,7 @@ const projects = [
     impact: "Streamlined dispatch operations and improved driver routing efficiency for private transportation fleets, ensuring reliable and timely medical and delivery transports.",
     challenge: "Building a reliable real-time tracking and dispatch system. Solved by leveraging scalable AWS infrastructure alongside the MERN stack for high availability and low latency.",
     tags: ["MongoDB", "Express", "React", "Node.js", "AWS", "Bootstrap"],
-    liveDemo: "https://xperdriver.com"
+    liveDemo: "https://xperdriver.com?r=1"
   },
   {
     title: "E-Commerce Dashboard",
