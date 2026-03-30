@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon, MapPin, Github, Twitter, Send, Search } from 'lucide-react';
+import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon, MapPin, Github, Twitter, Send, Search, BarChart, Server } from 'lucide-react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { 
+  SiMongodb, SiExpress, SiReact, SiNodedotjs, SiBootstrap, 
+  SiTailwindcss, SiVite, SiNextdotjs, SiTypescript, SiFirebase, SiFramer, 
+  SiSocketdotio, SiPostgresql, SiPrisma, SiMarkdown, SiDocker, 
+  SiGnubash, SiMapbox, SiSupabase, SiJavascript, SiVercel, 
+  SiRedux, SiReactrouter, SiGoogle, SiEthereum
+} from 'react-icons/si';
+import { FaAws, FaCss3, FaHtml5 } from 'react-icons/fa';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -157,6 +165,24 @@ const projects = [
     liveDemo: "https://homedripsolution.com/"
   },
   {
+    title: "Paradise Nursery",
+    description: "A shopping cart application for an online plant shop offering a variety of house plants with categorized listings and dynamic cart management.",
+    impact: "Delivered a seamless e-commerce experience with real-time cart updates and categorized product listings, enhancing user engagement and shopping efficiency.",
+    challenge: "Managing complex global state for the shopping cart across multiple views. Solved by implementing Redux Toolkit for predictable state management and React Router for smooth navigation.",
+    tags: ["React", "Redux Toolkit", "React Router", "Tailwind CSS", "Vite"],
+    link: "https://github.com/yeffrydiaz/paradise-nursery",
+    liveDemo: "https://e-plant-shopping-weld-kappa.vercel.app/"
+  },
+  {
+    title: "Employee Time Sheet",
+    description: "A modern web application for managing and tracking employee time sheets, built using Google AI Studio and hosted on Vercel.",
+    impact: "Streamlined the time tracking process, making it easier for employees to log hours and for managers to review them.",
+    challenge: "Creating an intuitive user interface for time entry and reporting. Solved by using React and Tailwind CSS for a responsive and accessible design.",
+    tags: ["React", "Tailwind CSS", "Vercel", "Google AI Studio"],
+    link: "https://github.com/yeffrydiaz/employee-time-sheet",
+    liveDemo: "https://employee-time-sheet.vercel.app"
+  },
+  {
     title: "WEBNOW",
     description: "A comprehensive service application offering multiple tools for businesses and individuals, built with React and Firebase.",
     impact: "Provided a centralized platform for various utility tools, improving user productivity and simplifying access to essential services.",
@@ -239,9 +265,15 @@ function Home() {
             className="flex-1 space-y-8"
           >
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                Available for work
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                  Available for work
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono text-purple-300">
+                  <Terminal className="w-3 h-3" />
+                  VIBE CODER
+                </div>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1]">
                 Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-500">Yeffry.</span><br />
@@ -507,6 +539,46 @@ function ProjectsPage() {
   );
 }
 
+const iconMap: Record<string, React.ElementType> = {
+  "MongoDB": SiMongodb,
+  "Express": SiExpress,
+  "React": SiReact,
+  "Node.js": SiNodedotjs,
+  "AWS": FaAws,
+  "Bootstrap": SiBootstrap,
+  "Tailwind": SiTailwindcss,
+  "Tailwind CSS": SiTailwindcss,
+  "Vite": SiVite,
+  "Recharts": BarChart,
+  "Next.js": SiNextdotjs,
+  "TypeScript": SiTypescript,
+  "Firebase": SiFirebase,
+  "Firebase Functions": SiFirebase,
+  "Framer Motion": SiFramer,
+  "Gemini API": SiGoogle,
+  "Google AI Studio": SiGoogle,
+  "Socket.io": SiSocketdotio,
+  "PostgreSQL": SiPostgresql,
+  "Prisma": SiPrisma,
+  "AWS S3": FaAws,
+  "Markdown": SiMarkdown,
+  "Ethers.js": SiEthereum,
+  "WebSockets": SiSocketdotio,
+  "Commander.js": Terminal,
+  "Docker": SiDocker,
+  "Bash": SiGnubash,
+  "Mapbox": SiMapbox,
+  "Supabase": SiSupabase,
+  "PostGIS": SiPostgresql,
+  "HTML": FaHtml5,
+  "CSS": FaCss3,
+  "JavaScript": SiJavascript,
+  "HostGator": Server,
+  "Vercel": SiVercel,
+  "Redux Toolkit": SiRedux,
+  "React Router": SiReactrouter
+};
+
 function ProjectCard({ project, index }: { key?: string; project: { title: string; description: string; impact: string; challenge: string; tags: string[]; link?: string; liveDemo?: string; }; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -585,11 +657,15 @@ function ProjectCard({ project, index }: { key?: string; project: { title: strin
       </div>
       
       <div className="flex flex-wrap gap-2 mt-auto relative z-10 pt-4 border-t border-white/5">
-        {project.tags.map((tag: string) => (
-          <span key={tag} className="px-3 py-1.5 text-[11px] font-mono rounded-full bg-white/[0.03] text-zinc-400 border border-white/5 hover:bg-white/10 hover:text-zinc-200 transition-colors duration-300 cursor-default">
-            {tag}
-          </span>
-        ))}
+        {project.tags.map((tag: string) => {
+          const Icon = iconMap[tag];
+          return (
+            <span key={tag} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-mono rounded-full bg-white/[0.03] text-zinc-400 border border-white/5 hover:bg-white/10 hover:text-zinc-200 transition-colors duration-300 cursor-default">
+              {Icon && <Icon className="w-3 h-3" />}
+              {tag}
+            </span>
+          );
+        })}
       </div>
     </motion.div>
   );
