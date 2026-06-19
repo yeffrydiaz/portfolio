@@ -60,7 +60,7 @@ function CreativeAvatar() {
         <div className="-rotate-12 flex flex-col items-center">
           <Code2 className="w-10 h-10 md:w-16 md:h-16 text-emerald-400 mb-2 drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
           <span className="font-mono font-bold text-sm md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-purple-400">
-            Y.DEV
+            &lt;YD /&gt;
           </span>
         </div>
       </motion.div>
