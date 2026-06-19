@@ -21,7 +21,75 @@ function ScrollToTop() {
   return null;
 }
 
-const PROFILE_IMAGE_URL = "https://image2url.com/r2/default/images/1774311225354-b6e55a91-d2a5-43f5-99f9-5718c39abe5a.jpg";
+function CreativeAvatar() {
+  return (
+    <div className="relative w-full h-full bg-zinc-950 flex items-center justify-center overflow-hidden">
+      {/* Deep glowing background */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 via-transparent to-emerald-900/20" />
+      
+      {/* Animated outer dashed ring */}
+      <motion.div 
+        animate={{ rotate: 360 }} 
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-[15%] rounded-full border border-dashed border-emerald-500/30"
+      />
+      
+      {/* Animated inner solid ring */}
+      <motion.div 
+        animate={{ rotate: -360 }} 
+        transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-[25%] rounded-full border border-purple-500/30"
+      />
+
+      {/* Thin accent ring */}
+      <motion.div 
+        animate={{ rotate: 180 }} 
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" }}
+        className="absolute inset-[35%] rounded-full border-t border-purple-400/40"
+      />
+      
+      {/* Central glowing core element */}
+      <motion.div 
+        animate={{ 
+          scale: [1, 1.05, 1],
+          rotate: [0, 5, -5, 0]
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="relative z-10 w-[55%] h-[55%] rounded-3xl bg-gradient-to-tr from-purple-500/10 to-emerald-500/10 backdrop-blur-[2px] border border-white/10 flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.15)] rotate-12"
+      >
+        <div className="-rotate-12 flex flex-col items-center">
+          <Code2 className="w-10 h-10 md:w-16 md:h-16 text-emerald-400 mb-2 drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]" />
+          <span className="font-mono font-bold text-sm md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-purple-400">
+            Y.DEV
+          </span>
+        </div>
+      </motion.div>
+
+      {/* Floating data particles */}
+      {[...Array(12)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0 }}
+          animate={{ 
+            y: [0, -40, -80],
+            opacity: [0, 0.8, 0]
+          }}
+          transition={{
+            duration: 2 + (i % 3),
+            repeat: Infinity,
+            delay: i * 0.4,
+            ease: "linear"
+          }}
+          className="absolute w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-emerald-400"
+          style={{
+            left: `${15 + (i * 7)}%`,
+            bottom: '20%'
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 const skills = [
   { name: "React.js", icon: <Layout className="w-5 h-5" /> },
@@ -66,7 +134,7 @@ const projects = [
     challenge: "Managing API rate limits and ensuring consistent tone in AI responses. Overcame this by implementing a robust Redis-backed queuing system and fine-tuning the Gemini API prompts with context-aware parameters and few-shot learning techniques.",
     tags: ["React", "Node.js", "Gemini API"],
     link: "https://github.com/yeffrydiaz/ai-content-gen",
-    liveDemo: "https://ai-content-gen-git-copilot-configure-ou-5a107c-yeffrys-projects.vercel.app/"
+    liveDemo: "https://gen.webnow.company"
   },
   {
     title: "Real-time Chat Application",
@@ -306,13 +374,8 @@ function Home() {
             
             {/* Image container with premium border and vignette */}
             <div className="relative w-full h-full rounded-full p-2 bg-gradient-to-tr from-zinc-800/50 to-zinc-400/20 backdrop-blur-sm border border-white/10 shadow-2xl overflow-hidden">
-              <div className="relative w-full h-full rounded-full overflow-hidden bg-zinc-900">
-                <img 
-                  src={PROFILE_IMAGE_URL} 
-                  alt="Yeffry" 
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
-                />
+              <div className="relative w-full h-full rounded-full overflow-hidden bg-zinc-900 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
+                <CreativeAvatar />
                 
                 {/* Vignette overlay (darkens edges) */}
                 <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.8)] pointer-events-none"></div>
@@ -338,12 +401,12 @@ function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors"
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.06] hover:border-white/20 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300"
               >
-                <div className="p-3 rounded-xl bg-white/5 text-zinc-300">
+                <div className="p-3 rounded-xl bg-white/5 text-zinc-300 group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
                   {skill.icon}
                 </div>
-                <span className="font-medium text-zinc-200">{skill.name}</span>
+                <span className="font-medium text-zinc-200 group-hover:text-white transition-colors duration-300">{skill.name}</span>
               </motion.div>
             ))}
           </div>
