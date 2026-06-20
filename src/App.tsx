@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon, MapPin, Github, Twitter, Send, Search, BarChart, Server } from 'lucide-react';
+import { Linkedin, Mail, ExternalLink, Code2, Terminal, Layout, Database, ChevronRight, ArrowLeft, Sun, Moon, MapPin, Github, Send, Search, BarChart, Server } from 'lucide-react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   SiMongodb, SiExpress, SiReact, SiNodedotjs, SiBootstrap, 
@@ -497,14 +497,11 @@ function ContactPage() {
               <div>
                 <h3 className="text-xl font-semibold mb-6">Socials</h3>
                 <div className="flex gap-4">
-                  <a href="https://github.com/yeffrydiaz" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
+                  <a href="https://github.com/innovativehash" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
                     <Github className="w-5 h-5" />
                   </a>
                   <a href="https://www.linkedin.com/in/yeffrydiaz/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
                     <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a href="https://twitter.com/yeffrydiaz" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 hover:scale-110 transition-all">
-                    <Twitter className="w-5 h-5" />
                   </a>
                 </div>
               </div>
